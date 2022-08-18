@@ -38,9 +38,9 @@ body {
 
 /* Grid */
 
-.grid-container {
+.index-container {
   display: grid;
-  grid-template: "header" 6rem "heading""main""footer""bottom" / 1fr;
+  grid-template: "header" 6rem "heading" "index-main" "footer""bottom" / 1fr;
 }
 
 /* Header */
@@ -79,6 +79,20 @@ body {
   text-transform: uppercase;
   letter-spacing: 2px;
   line-height: 1.5;
+}
+
+/* Index main */
+
+.index-main {
+  grid-area: index-main;
+
+}
+
+/* Grid */
+
+.grid-container {
+  display: grid;
+  grid-template: "header" 6rem "heading" "main" "footer""bottom" / 1fr;
 }
 
 /* Main */
