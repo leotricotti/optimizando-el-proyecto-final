@@ -82,7 +82,7 @@ function modificarOpcion() {
   let opcionModificada = document.querySelector(".opcion-modificada");
   opcionModificada.innerHTML = "";
   opcionModificada.innerHTML =
-    "<p>Si</p> <a href='../../index.html'> <div class='btn-derecha' id='btn-saldo'></div></a></li>";
+    "<p>Si</p> <a href='../cajero/cajero.html'> <div class='btn-derecha' id='btn-saldo'></div></a></li>";
   //Codigo que cambia texto del html
   let opcionModificadaDos = document.querySelector(".opcion-modificada-dos");
   opcionModificadaDos.innerHTML = "";
