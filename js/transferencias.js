@@ -174,6 +174,11 @@ const numeroAPesos = (dinero) => {
     currency: "ARS",
   }).format(dinero));
 };
+
+const transferenciasInput = document.getElementById("transferencias-input");
+
+if()
+
 //Funcion que captura la informacion brindada por el usuario y la convierte en un objeto
 captura.onclick = () => {
   //Codigo que utiliza el constructor Depositos para crear un nuevo objeto que contiene los datos de la operacion realizada
