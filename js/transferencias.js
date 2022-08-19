@@ -129,7 +129,17 @@ function mostrarCuentas(...array) {
   //Codigo que asigna a un padre la tabla creada anteriormente
   let tableContainer = document.querySelector(".table-container");
   tableContainer.append(table);
-};
+}
+//Constructor que crea los objetos que van a  simular las transferencias realizadas 
+class Operacion { 
+  constructor(fecha, hora, operacion, monto, saldo) {
+    this.fecha = fecha;
+    this.hora = hora;
+    this.operacion = operacion;
+    this.monto = monto;
+    this.saldo = saldo;
+  }
+}
 //Llamada a la funcion que inyecta informacion de las cuentas habilitadas para recibir transferencias en el html
 mostrarCuentas(...cuentasHabilitadas);
 //Codigo que captura el boton que confirma la operacion
