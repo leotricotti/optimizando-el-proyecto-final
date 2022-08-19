@@ -44,46 +44,6 @@ const cargarCuentasHabilitadas = (arr) => {
     cuenta: "4566-978600/4",
     entidad: "Banco Galicia"
   });
-  arr.push({
-    id: "06", 
-    titular: "Odello, Alma",
-    tipo: "Caja de Ahorro",
-    moneda: "$",
-    cuenta: "4566-462347/1",
-    entidad: "Banco Nación"
-  });
-  arr.push({
-    id: "07",
-    titular: "López, Susana",
-    tipo: "Caja de Ahorro",
-    moneda: "$",
-    cuenta: "5765-274416/7",
-    entidad: "Banco Hipotecario"
-  });
-  arr.push({
-    id: "08",
-    titular: "Szulz, Alffedo",
-    tipo: "Caja de Ahorro",
-    moneda: "$",
-    cuenta: "8765-602337/9",
-    entidad: "Banco Provincia"
-  });
-  arr.push({
-    id: "09",
-    titular: "Sandoval, Pamela",
-    tipo: "Cuenta Corriente",
-    moneda: "$",
-    cuenta: "3575-389726/4",
-    entidad: "Banco Ciudad"
-  });
-  arr.push({
-    id: "10",
-    titular: "Gaetani, Romina",
-    tipo: "Cuenta Corriente",
-    moneda: "$",
-    cuenta: "6525-753493/4",
-    entidad: "Banco Roela"
-  });
 }
 //Llamada a la funcion que carga las cuentas en el array de cuentas habilitadas
 cargarCuentasHabilitadas(cuentasHabilitadas);
@@ -127,58 +87,47 @@ function mostrarCuentas(array) {
   table.append(tableHead);
   table.append(tableBody);
   //Codigo que asigna a un padre la tabla creada anteriormente
-  let tableContainer = document.querySelector(".table-container");
+  tableContainer = document.querySelector(".table-container");
   tableContainer.append(table);
 }
 //Llamada a la funcion que inyecta al html la tabla con las cuentas habilitadas
 mostrarCuentas(cuentasHabilitadas);
 //Codigo que captura el campo donde el usuario debe ingresar la cantidad de dinero que desea transferir
 const inputTransferencia = document.getElementById("transferencia-input");
-
+//Codigo que captura el boton que confirma la operacion
 const capturarValor =  document.getElementById("transferencia-submit");
-
+//Operador que desestructura el array de objetos
 let [a, b, c, d, f, g, h, i, j, k] = cuentasHabilitadas;
-
+//Funcion que captura la cuenta seleccionada y devuelve una confirmacion y un campo para ingresar el importe que se desea transferir
 capturarValor.onclick = () => {
   if(inputTransferencia.value == "01"){
-    //Codigo para cambiar el subtitulo del simulador
+    //Codigo para cambiar el subtitulo del simulador y agrega el data del titular de la cuenta como medida de control
     const text = document.querySelector(".text");
     text.innerHTML = "<p class='text'> Ingrese el monto que desea transferir a " + a.titular + ": <input type= 'number' class= 'input' id= 'transferencia-input'> </p>";
-
-     
-  }
-  else if(inputTransferencia.value == "02"){
+    //Codigo que quita la tabla con las cuentas habilitadas simuladas
+    tableContainer.innerHTML = "";
+    //Codigo que agrega una nueva clase al boton aceptar
+    capturarValor.innerHTML = "";
+    capturarValor.innerHTML = '<li class="teclas-derecha opcion-modificada-dos" id="confirmar-importe"> <p>Aceptar -- &gt;&gt;</p> <div class="btn-derecha link"></div> </li>'
+  }else if(inputTransferencia.value == "02"){
     console.log(b.titular);
-  }
-  else if(inputTransferencia.value == "03"){
+  }else if(inputTransferencia.value == "03"){
     console.log(03);
-  }
-  else if(inputTransferencia.value == "04"){
+  }else if(inputTransferencia.value == "04"){
     console.log(04);
-  }
-  else if(inputTransferencia.value == "05"){
-    console.log(05);
-  }
-  else if(inputTransferencia.value == "06"){
-    console.log(06);
-  }
-  else if(inputTransferencia.value == "07"){
-    console.log(07);
-  }
-  else if(inputTransferencia.value == "08"){
-    console.log(08);
-  }
-  else if(inputTransferencia.value == "09"){
-    console.log(09);
-  }
-  else if(inputTransferencia.value == "10"){
-    console.log(10);
-  }
-  else
-  {
-    return console.log(0)
+  }else if(inputTransferencia.value == "04"){
+    console.log(04);
+  }else if(inputTransferencia.value == "04"){
+    console.log(04);
+  }else{
+    swal("Opcion invalida", "Vuelve a intetarlo!!", "error");
   }
 }
 
+const cofirmacion = document.getElementById("confirmar-importe");
+
+confirmacion.onclick = () => {
+
+}
 
 
