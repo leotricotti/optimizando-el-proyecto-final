@@ -3,8 +3,8 @@ let saldoCajaAhorro = 150000;
 //Array que contiene las cuentas habilitadas para recibir transferencias
 const cuentasHabilitadas = [];
 //Funcion que carga las cuentas habilitadas para recibir transferencias
-const cargarCuentasHabilitadas = () => {
-  cuentasHabilitadas.push({
+const cargarCuentasHabilitadas = (arr) => {
+  arr.push({
     id: "01",
     titular: "Gómez, Sandra",
     tipo: "Caja de Ahorro",
@@ -12,7 +12,7 @@ const cargarCuentasHabilitadas = () => {
     cuenta: "4069-5689756/5",
     entidad: "Banco Galicia"
   });
-  cuentasHabilitadas.push({
+  arr.push({
     id: "02",
     titular: "Suarez, Analía",
     tipo: "Cuenta Corriente",
@@ -20,7 +20,7 @@ const cargarCuentasHabilitadas = () => {
     cuenta: "5879-789700/4",
     entidad: "Banco Hipotecario"
   });
-  cuentasHabilitadas.push({
+  arr.push({
     id: "03",
     titular: "Castro, Cintia",
     tipo: "Cuenta Corriente",
@@ -28,7 +28,7 @@ const cargarCuentasHabilitadas = () => {
     cuenta: "4565-991626/8",
     entidad: "Banco Provincia"
   });
-  cuentasHabilitadas.push({
+  arr.push({
     id: "04",
     titular: "Alonso, Juan Alberto",
     tipo: "Caja de Ahorro",
@@ -36,7 +36,7 @@ const cargarCuentasHabilitadas = () => {
     cuenta: "2356-123055/5",
     entidad: "Banco Santander"
   });
-  cuentasHabilitadas.push({
+  arr.push({
     id: "05",
     titular: "Villareal, Susana",
     tipo: "Cuenta Corriente",
@@ -44,7 +44,7 @@ const cargarCuentasHabilitadas = () => {
     cuenta: "4566-978600/4",
     entidad: "Banco Galicia"
   });
-  cuentasHabilitadas.push({
+  arr.push({
     id: "06", 
     titular: "Odello, Alma",
     tipo: "Caja de Ahorro",
@@ -52,7 +52,7 @@ const cargarCuentasHabilitadas = () => {
     cuenta: "4566-462347/1",
     entidad: "Banco Nación"
   });
-  cuentasHabilitadas.push({
+  arr.push({
     id: "07",
     titular: "López, Susana",
     tipo: "Caja de Ahorro",
@@ -60,7 +60,7 @@ const cargarCuentasHabilitadas = () => {
     cuenta: "5765-274416/7",
     entidad: "Banco Hipotecario"
   });
-  cuentasHabilitadas.push({
+  arr.push({
     id: "08",
     titular: "Szulz, Alffedo",
     tipo: "Caja de Ahorro",
@@ -68,7 +68,7 @@ const cargarCuentasHabilitadas = () => {
     cuenta: "8765-602337/9",
     entidad: "Banco Provincia"
   });
-  cuentasHabilitadas.push({
+  arr.push({
     id: "09",
     titular: "Sandoval, Pamela",
     tipo: "Cuenta Corriente",
@@ -76,7 +76,7 @@ const cargarCuentasHabilitadas = () => {
     cuenta: "3575-389726/4",
     entidad: "Banco Ciudad"
   });
-  cuentasHabilitadas.push({
+  arr.push({
     id: "10",
     titular: "Gaetani, Romina",
     tipo: "Cuenta Corriente",
@@ -86,9 +86,9 @@ const cargarCuentasHabilitadas = () => {
   });
 }
 //Llamada a la funcion que carga las cuentas en el array de cuentas habilitadas
-cargarCuentasHabilitadas();
+cargarCuentasHabilitadas(cuentasHabilitadas);
 //Funcion que inyecta la tabla cuentas habilitadas a recibir transferencias en el html
-function selecionarCuenta() {
+function mostrarCuentas(...array) {
   //Código que crea el elemento tabla y le asigna sus clases
   let table = document.createElement("table");
   table.className = "table table-hover";
@@ -109,8 +109,8 @@ function selecionarCuenta() {
   //Codigo que crea el cuerpo de la tabla y agrega el divisor entre cabeza y cuerpo
   let tableBody = document.createElement("tbody");
   tableBody.className = "table-group-divider";
-  //Codigo que recorre el array de cuentas creado anteriormente y asigna casda elemento a su culumna
-  for (const cuenta of cuentasHabilitadas) {
+  //Codigo que recorre el array de cuentas creado anteriormente y asigna cada elemento a su culumna
+  for (const cuenta of array) {
     console.log()
     tableBody.innerHTML += `
         <tr>
@@ -131,8 +131,7 @@ function selecionarCuenta() {
   tableContainer.append(table);
 };
 //Llamada a la funcion que inyecta informacion de las cuentas habilitadas para recibir transferencias en el html
-selecionarCuenta();
-
+mostrarCuentas(...cuentasHabilitadas);
 //Codigo que captura el boton que confirma la operacion
 const captura = document.getElementById("extracciones-submit");
 //Codigo que captura el boton que modifica la operacion
@@ -167,18 +166,8 @@ const numeroAPesos = (dinero) => {
 };
 //Funcion que captura la informacion brindada por el usuario y la convierte en un objeto
 captura.onclick = () => {
-  // Constructor del objeto depositos;
-  class Extraccion {
-    constructor(fecha, hora, operacion, monto, saldo) {
-      this.fecha = fecha;
-      this.hora = hora;
-      this.operacion = operacion;
-      this.monto = monto;
-      this.saldo = saldo;
-    }
-  }
   //Codigo que utiliza el constructor Depositos para crear un nuevo objeto que contiene los datos de la operacion realizada
-  nuevaExtraccion = new Extraccion(
+  nuevaExtraccion = new Operacion(
     capturarDiaExtraccion(),
     capturarHoraExtraccion(),
     nombrarOperacion(),
