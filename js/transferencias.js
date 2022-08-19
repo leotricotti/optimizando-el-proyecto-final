@@ -177,10 +177,11 @@ const numeroAPesos = (dinero) => {
 
 const transferenciasInput = document.getElementById("transferencias-input");
 
-if()
+const continuar = (transferenciasInput == " ") ? true : false;
 
 //Funcion que captura la informacion brindada por el usuario y la convierte en un objeto
 captura.onclick = () => {
+  continuar ? swal("Seleccione una opción valida.", "error") :
   //Codigo que utiliza el constructor Depositos para crear un nuevo objeto que contiene los datos de la operacion realizada
   nuevaExtraccion = new Operacion(
     capturarDiaExtraccion(),
@@ -188,7 +189,7 @@ captura.onclick = () => {
     nombrarOperacion(),
     numeroADinero(),
     convertirSaldoADinero()
-  );
+  )
   //Llamada a las funciones declaradas
   confirmarOperacion();
   modificarOpcion();
