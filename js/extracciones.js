@@ -6,26 +6,26 @@ const clean = document.getElementById("limpiar-campo");
 //Codigo que captura el campo donde el usuario debe ingresar la cantidad de dinerao que desea depsositar
 let inputExtraccion = document.getElementById("extracciones-input");
 //Funcion que captura la fecha en que se realiza la operación
-capturarDiaExtraccion = () => new Date().toLocaleDateString();
+const capturarDiaExtraccion = () => new Date().toLocaleDateString();
 //Funcion que captura la hora en que se realiza la operacion
-capturarHoraExtraccion = () => new Date().toLocaleTimeString();
+const capturarHoraExtraccion = () => new Date().toLocaleTimeString();
 //Codigo que informa el tipo de operacion
-nombrarOperacion = () => "Extraccion Adelanto";
+const nombrarOperacion = () => "Extraccion Adelanto";
 //Funcion que captura la informacion sobre la operacion provista por el usuario
-extraerDinero = () => inputExtraccion.value;
+const extraerDinero = () => inputExtraccion.value;
 //Funcion que parsea el numero ingresado por el usuario
-parsearDineroExtraido = () => parseInt(extraerDinero());
+const parsearDineroExtraido = () => parseInt(extraerDinero());
 //Codigo que actualiza el saldo de la caja de ahorro simulada
-actualizarSaldoCajaAhorro = () => {
+const actualizarSaldoCajaAhorro = () => {
   saldoCajaAhorro = saldoCajaAhorro - parsearDineroExtraido();
   return saldoCajaAhorro;
 }
-//Funcion que convierte a pesos el dato parseado
-numeroADinero = () => numeroAPesos(extraerDinero());
-//Codigo que convierte a pesos el saldo simulado
-convertirSaldoADinero = () => numeroAPesos(actualizarSaldoCajaAhorro());
+//Funcion que convierte al formato de moneda local el dato parseado
+const numeroADinero = () => numeroAPesos(extraerDinero());
+//Codigo que convierte al formato de moneda local el saldo simulado
+const convertirSaldoADinero = () => numeroAPesos(actualizarSaldoCajaAhorro());
 //Funcion que coinvierte un numero al formato de pesos argentinos
-numeroAPesos = (dinero) => {
+const numeroAPesos = (dinero) => {
   return (dinero = new Intl.NumberFormat("es-AR", {
     style: "currency",
     currency: "ARS",
@@ -56,7 +56,6 @@ captura.onclick = () => {
   modificarOpcion();
   agregarTexto();
   modificarOpcion();
-  guardarOperacion();
 };
 //Funcion que devuelve al usuario la confirmacion de su operacion 
 const text = document.querySelector(".text");
