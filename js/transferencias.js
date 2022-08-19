@@ -2,7 +2,7 @@
 let saldoCajaAhorro = 150000;
 //Array que contiene las cuentas habilitadas para recibir transferencias
 const cuentasHabilitadas = [];
-
+//Funcion que carga las cuentas habilitadas para recibir transferencias
 const cargarCuentasHabilitadas = () => {
   cuentasHabilitadas.push({
     id: "01",
@@ -85,10 +85,10 @@ const cargarCuentasHabilitadas = () => {
     entidad: "Banco Roela"
   });
 }
+//Llamada a la funcion que carga las cuentas en el array de cuentas habilitadas
 cargarCuentasHabilitadas();
-console.log(cuentasHabilitadas);
+//Funcion que inyecta la tabla cuentas habilitadas a recibir transferencias en el html
 function selecionarCuenta() {
-
   //Código que crea el elemento tabla y le asigna sus clases
   let table = document.createElement("table");
   table.className = "table table-hover";
@@ -130,7 +130,7 @@ function selecionarCuenta() {
   let tableContainer = document.querySelector(".table-container");
   tableContainer.append(table);
 };
-
+//Llamada a la funcion que inyecta informacion de las cuentas habilitadas para recibir transferencias en el html
 selecionarCuenta();
 
 //Codigo que captura el boton que confirma la operacion
