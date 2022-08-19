@@ -88,7 +88,7 @@ const cargarCuentasHabilitadas = (arr) => {
 //Llamada a la funcion que carga las cuentas en el array de cuentas habilitadas
 cargarCuentasHabilitadas(cuentasHabilitadas);
 //Funcion que inyecta la tabla cuentas habilitadas a recibir transferencias en el html
-function mostrarCuentas(...array) {
+function mostrarCuentas(array) {
   //Código que crea el elemento tabla y le asigna sus clases
   let table = document.createElement("table");
   table.className = "table table-hover";
@@ -130,14 +130,55 @@ function mostrarCuentas(...array) {
   let tableContainer = document.querySelector(".table-container");
   tableContainer.append(table);
 }
-//Constructor que crea los objetos que van a  simular las transferencias realizadas 
-class Operacion { 
-  constructor(fecha, hora, operacion, monto, saldo) {
-    this.fecha = fecha;
-    this.hora = hora;
-    this.operacion = operacion;
-    this.monto = monto;
-    this.saldo = saldo;
+//Llamada a la funcion que inyecta al html la tabla con las cuentas habilitadas
+mostrarCuentas(cuentasHabilitadas);
+//Codigo que captura el campo donde el usuario debe ingresar la cantidad de dinero que desea transferir
+const inputTransferencia = document.getElementById("transferencia-input");
+
+const capturarValor =  document.getElementById("transferencia-submit");
+
+let [a, b, c, d, f, g, h, i, j, k] = cuentasHabilitadas;
+
+capturarValor.onclick = () => {
+  if(inputTransferencia.value == "01"){
+    //Codigo para cambiar el subtitulo del simulador
+    const text = document.querySelector(".text");
+    text.innerHTML = "<p class='text'> Ingrese el monto que desea transferir a " + a.titular + ": <input type= 'number' class= 'input' id= 'transferencia-input'> </p>";
+
+     
+  }
+  else if(inputTransferencia.value == "02"){
+    console.log(b.titular);
+  }
+  else if(inputTransferencia.value == "03"){
+    console.log(03);
+  }
+  else if(inputTransferencia.value == "04"){
+    console.log(04);
+  }
+  else if(inputTransferencia.value == "05"){
+    console.log(05);
+  }
+  else if(inputTransferencia.value == "06"){
+    console.log(06);
+  }
+  else if(inputTransferencia.value == "07"){
+    console.log(07);
+  }
+  else if(inputTransferencia.value == "08"){
+    console.log(08);
+  }
+  else if(inputTransferencia.value == "09"){
+    console.log(09);
+  }
+  else if(inputTransferencia.value == "10"){
+    console.log(10);
+  }
+  else
+  {
+    return console.log(0)
   }
 }
- mostrarCuentas(...cuentasHabilitadas);
+
+
+
