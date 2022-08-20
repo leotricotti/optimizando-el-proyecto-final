@@ -95,7 +95,7 @@ mostrarCuentas(cuentasHabilitadas);
 //Codigo que captura el campo donde el usuario debe ingresar la cantidad de dinero que desea transferir
 const inputTransferencia = document.getElementById("transferencia-input");
 //Codigo que captura el boton que confirma la operacion
-const capturarValor =  document.getElementById("transferencia-submit");
+const capturarValor = document.getElementById("transferencia-submit");
 //Operador que desestructura el array de objetos
 const [a, b, c, d, f] = cuentasHabilitadas;
 //Funcion que captura la cuenta seleccionada y devuelve una confirmacion y un campo para ingresar el importe que se desea transferir
@@ -124,9 +124,6 @@ const seleccionarCuenta = (inputValue) =>{
     text.innerHTML = `<p class='text'> Ingrese el monto que desea transferir a ${d.titular} : <input type= 'number' class= 'input' id= 'transferencia-input'> </p>`;
     //Codigo que quita la tabla con las cuentas habilitadas simuladas
     tableContainer.innerHTML = "";
-    //Codigo que agrega una nueva clase al boton aceptar para terminar la transferencia
-    capturarValor.innerHTML = "";
-    capturarValor.innerHTML = '<li class="teclas-derecha opcion-modificada-dos"> <p>Aceptar -- &gt;&gt;</p> <div class="btn-derecha link"></div> </li>'
   }else if(inputValue == "05"){
     //Codigo para cambiar el subtitulo del simulador y agrega el data del titular de la cuenta como medida de control
     const text = document.querySelector(".text");
@@ -138,9 +135,8 @@ const seleccionarCuenta = (inputValue) =>{
   }
 }
 
-
 capturarValor.onclick = () => {
-  // seleccionarCuenta(inputTransferencia.value);
+  seleccionarCuenta(inputTransferencia.value);
   confirmar();
 }
 
@@ -152,7 +148,10 @@ const confirmar = () => {
     showCancelButton: true,
     confirmButtonColor: '#3085d6',
     confirmButtonText: 'Confirmar',
-    cancelButtonText: 'Cancelar'
+    cancelButtonText: 'Cancelar',
+    showClass: {
+      popup: 'animate__animated animate__bounceIn'
+    }
   }).then((result) => {
     if (result.isConfirmed) {
       Swal.fire(
@@ -160,6 +159,8 @@ const confirmar = () => {
         'Your file has been deleted.',
         'success'
       )
+    } else {
+
     }
   })
 }
