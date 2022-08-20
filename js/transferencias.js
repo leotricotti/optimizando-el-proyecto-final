@@ -106,28 +106,69 @@ capturarValor.onclick = () => {
     text.innerHTML = "<p class='text'> Ingrese el monto que desea transferir a " + a.titular + ": <input type= 'number' class= 'input' id= 'transferencia-input'> </p>";
     //Codigo que quita la tabla con las cuentas habilitadas simuladas
     tableContainer.innerHTML = "";
-    //Codigo que agrega una nueva clase al boton aceptar
+    //Codigo que agrega una nueva clase al boton aceptar para terminar la transferencia
     capturarValor.innerHTML = "";
-    capturarValor.innerHTML = '<li class="teclas-derecha opcion-modificada-dos" id="confirmar-importe"> <p>Aceptar -- &gt;&gt;</p> <div class="btn-derecha link"></div> </li>'
+    capturarValor.innerHTML = '<li class="teclas-derecha opcion-modificada-dos"> <p>Aceptar -- &gt;&gt;</p> <div class="btn-derecha link"></div> </li>'
   }else if(inputTransferencia.value == "02"){
-    console.log(b.titular);
+    //Codigo para cambiar el subtitulo del simulador y agrega el data del titular de la cuenta como medida de control
+    const text = document.querySelector(".text");
+    text.innerHTML = "<p class='text'> Ingrese el monto que desea transferir a " + b.titular + ": <input type= 'number' class= 'input' id= 'transferencia-input'> </p>";
+    //Codigo que quita la tabla con las cuentas habilitadas simuladas
+    tableContainer.innerHTML = "";
+    //Codigo que agrega una nueva clase al boton aceptar para terminar la transferencia
+    capturarValor.innerHTML = "";
+    capturarValor.innerHTML = '<li class="teclas-derecha opcion-modificada-dos"> <p>Aceptar -- &gt;&gt;</p> <div class="btn-derecha link"></div> </li>'
   }else if(inputTransferencia.value == "03"){
-    console.log(03);
+    //Codigo para cambiar el subtitulo del simulador y agrega el data del titular de la cuenta como medida de control
+    const text = document.querySelector(".text");
+    text.innerHTML = "<p class='text'> Ingrese el monto que desea transferir a " + c.titular + ": <input type= 'number' class= 'input' id= 'transferencia-input'> </p>";
+    //Codigo que quita la tabla con las cuentas habilitadas simuladas
+    tableContainer.innerHTML = "";
+    //Codigo que agrega una nueva clase al boton aceptar para terminar la transferencia
+    capturarValor.innerHTML = "";
+    capturarValor.innerHTML = '<li class="teclas-derecha opcion-modificada-dos"> <p>Aceptar -- &gt;&gt;</p> <div class="btn-derecha link"></div> </li>'
   }else if(inputTransferencia.value == "04"){
-    console.log(04);
-  }else if(inputTransferencia.value == "04"){
-    console.log(04);
-  }else if(inputTransferencia.value == "04"){
-    console.log(04);
+    //Codigo para cambiar el subtitulo del simulador y agrega el data del titular de la cuenta como medida de control
+    const text = document.querySelector(".text");
+    text.innerHTML = "<p class='text'> Ingrese el monto que desea transferir a " + d.titular + ": <input type= 'number' class= 'input' id= 'transferencia-input'> </p>";
+    //Codigo que quita la tabla con las cuentas habilitadas simuladas
+    tableContainer.innerHTML = "";
+    //Codigo que agrega una nueva clase al boton aceptar para terminar la transferencia
+    capturarValor.innerHTML = "";
+    capturarValor.innerHTML = '<li class="teclas-derecha opcion-modificada-dos"> <p>Aceptar -- &gt;&gt;</p> <div class="btn-derecha link"></div> </li>'
+  }else if(inputTransferencia.value == "05"){
+    //Codigo para cambiar el subtitulo del simulador y agrega el data del titular de la cuenta como medida de control
+    const text = document.querySelector(".text");
+    text.innerHTML = "<p class='text'> Ingrese el monto que desea transferir a " + a.titular + ": <input type= 'number' class= 'input' id= 'transferencia-input'> </p>";
+    //Codigo que quita la tabla con las cuentas habilitadas simuladas
+    tableContainer.innerHTML = "";
+    //Codigo que agrega una nueva clase al boton aceptar para terminar la transferencia
+    capturarValor.innerHTML = "";
+    capturarValor.innerHTML = '<li class="teclas-derecha opcion-modificada-dos"> <p>Aceptar -- &gt;&gt;</p> <div class="btn-derecha link"></div> </li>'
   }else{
     swal("Opcion invalida", "Vuelve a intetarlo!!", "error");
   }
 }
 
-const cofirmacion = document.getElementById("confirmar-importe");
+const confirmacion = document.getElementsByClassName(".opcion-modificada-dos");
 
 confirmacion.onclick = () => {
-
+  swal({
+    title: "Are you sure?",
+    text: "Once deleted, you will not be able to recover this imaginary file!",
+    icon: "warning",
+    buttons: true,
+    dangerMode: true,
+  })
+  .then((willDelete) => {
+    if (willDelete) {
+      swal("Poof! Your imaginary file has been deleted!", {
+        icon: "success",
+      });
+    } else {
+      swal("Your imaginary file is safe!");
+    }
+  });
 }
 
 
