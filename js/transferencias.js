@@ -133,31 +133,35 @@ const seleccionarCuenta = (inputValue) =>{
     text.innerHTML = `<p class='text'> Ingrese el monto que desea transferir a ${f.titular} : <input type= 'number' class= 'input' id= 'transferencia-input'> </p>`;
     //Codigo que quita la tabla con las cuentas habilitadas simuladas
     tableContainer.innerHTML = "";
-    //Codigo que agrega una nueva clase al boton aceptar para terminar la transferencia
-    capturarValor.innerHTML = "";
-    capturarValor.innerHTML = '<li class="teclas-derecha opcion-modificada-dos"> <p>Aceptar -- &gt;&gt;</p> <div class="btn-derecha link"></div> </li>'
   }else{
     swal("Opcion invalida", "Vuelve a intetarlo!!", "error");
   }
 }
 
-confirmacion.onclick = () => {
-  swal({
-    title: "Are you sure?",
-    text: "Once deleted, you will not be able to recover this imaginary file!",
-    icon: "warning",
-    buttons: true,
-    dangerMode: true,
-  })
-  .then((willDelete) => {
-    if (willDelete) {
-      swal("Poof! Your imaginary file has been deleted!", {
-        icon: "success",
-      });
-    } else {
-      swal("Your imaginary file is safe!");
+
+capturarValor.onclick = () => {
+  // seleccionarCuenta(inputTransferencia.value);
+  confirmar();
+}
+
+const confirmar = () => {
+ Swal.fire({
+    title: 'Confirmar Operación',
+    text: "Desea transferir",
+    icon: 'question',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    confirmButtonText: 'Confirmar',
+    cancelButtonText: 'Cancelar'
+  }).then((result) => {
+    if (result.isConfirmed) {
+      Swal.fire(
+        'Deleted!',
+        'Your file has been deleted.',
+        'success'
+      )
     }
-  });
+  })
 }
 
 
