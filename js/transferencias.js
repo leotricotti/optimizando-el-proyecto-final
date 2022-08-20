@@ -97,22 +97,20 @@ const inputTransferencia = document.getElementById("transferencia-input");
 //Codigo que captura el boton que confirma la operacion
 const capturarValor =  document.getElementById("transferencia-submit");
 //Operador que desestructura el array de objetos
-let [a, b, c, d, f, g, h, i, j, k] = cuentasHabilitadas;
+const [a, b, c, d, f] = cuentasHabilitadas;
 //Funcion que captura la cuenta seleccionada y devuelve una confirmacion y un campo para ingresar el importe que se desea transferir
 capturarValor.onclick = () => {
   if(inputTransferencia.value == "01"){
     //Codigo para cambiar el subtitulo del simulador y agrega el data del titular de la cuenta como medida de control
     const text = document.querySelector(".text");
-    text.innerHTML = "<p class='text'> Ingrese el monto que desea transferir a " + a.titular + ": <input type= 'number' class= 'input' id= 'transferencia-input'> </p>";
+    text.innerHTML = `<p class='text'> Ingrese el monto que desea transferir a ${a.titular} : <input type= 'number' class= 'input' id= 'transferencia-input'> </p>`;
     //Codigo que quita la tabla con las cuentas habilitadas simuladas
     tableContainer.innerHTML = "";
-    //Codigo que agrega una nueva clase al boton aceptar para terminar la transferencia
-    capturarValor.innerHTML = "";
-    capturarValor.innerHTML = '<li class="teclas-derecha opcion-modificada-dos"> <p>Aceptar -- &gt;&gt;</p> <div class="btn-derecha link"></div> </li>'
+    
   }else if(inputTransferencia.value == "02"){
     //Codigo para cambiar el subtitulo del simulador y agrega el data del titular de la cuenta como medida de control
     const text = document.querySelector(".text");
-    text.innerHTML = "<p class='text'> Ingrese el monto que desea transferir a " + b.titular + ": <input type= 'number' class= 'input' id= 'transferencia-input'> </p>";
+    text.innerHTML = `<p class='text'> Ingrese el monto que desea transferir a ${b.titular} : <input type= 'number' class= 'input' id= 'transferencia-input'> </p>`;
     //Codigo que quita la tabla con las cuentas habilitadas simuladas
     tableContainer.innerHTML = "";
     //Codigo que agrega una nueva clase al boton aceptar para terminar la transferencia
@@ -121,7 +119,7 @@ capturarValor.onclick = () => {
   }else if(inputTransferencia.value == "03"){
     //Codigo para cambiar el subtitulo del simulador y agrega el data del titular de la cuenta como medida de control
     const text = document.querySelector(".text");
-    text.innerHTML = "<p class='text'> Ingrese el monto que desea transferir a " + c.titular + ": <input type= 'number' class= 'input' id= 'transferencia-input'> </p>";
+    text.innerHTML = `<p class='text'> Ingrese el monto que desea transferir a ${c.titular} : <input type= 'number' class= 'input' id= 'transferencia-input'> </p>`;
     //Codigo que quita la tabla con las cuentas habilitadas simuladas
     tableContainer.innerHTML = "";
     //Codigo que agrega una nueva clase al boton aceptar para terminar la transferencia
@@ -130,7 +128,7 @@ capturarValor.onclick = () => {
   }else if(inputTransferencia.value == "04"){
     //Codigo para cambiar el subtitulo del simulador y agrega el data del titular de la cuenta como medida de control
     const text = document.querySelector(".text");
-    text.innerHTML = "<p class='text'> Ingrese el monto que desea transferir a " + d.titular + ": <input type= 'number' class= 'input' id= 'transferencia-input'> </p>";
+    text.innerHTML = `<p class='text'> Ingrese el monto que desea transferir a ${d.titular} : <input type= 'number' class= 'input' id= 'transferencia-input'> </p>`;
     //Codigo que quita la tabla con las cuentas habilitadas simuladas
     tableContainer.innerHTML = "";
     //Codigo que agrega una nueva clase al boton aceptar para terminar la transferencia
@@ -139,7 +137,7 @@ capturarValor.onclick = () => {
   }else if(inputTransferencia.value == "05"){
     //Codigo para cambiar el subtitulo del simulador y agrega el data del titular de la cuenta como medida de control
     const text = document.querySelector(".text");
-    text.innerHTML = "<p class='text'> Ingrese el monto que desea transferir a " + a.titular + ": <input type= 'number' class= 'input' id= 'transferencia-input'> </p>";
+    text.innerHTML = `<p class='text'> Ingrese el monto que desea transferir a ${f.titular} : <input type= 'number' class= 'input' id= 'transferencia-input'> </p>`;
     //Codigo que quita la tabla con las cuentas habilitadas simuladas
     tableContainer.innerHTML = "";
     //Codigo que agrega una nueva clase al boton aceptar para terminar la transferencia
