@@ -93,76 +93,91 @@ function mostrarCuentas(array) {
 //Llamada a la funcion que inyecta al html la tabla con las cuentas habilitadas
 mostrarCuentas(cuentasHabilitadas);
 //Codigo que captura el campo donde el usuario debe ingresar la cantidad de dinero que desea transferir
-const inputTransferencia = document.getElementById("transferencia-input");
+let inputTransferencia = document.getElementById("transferencia-input");
+//Funcion que coinvierte un numero al formato de pesos argentinos
+const transferir = () => inputTransferencia.value;
+
+console.log(transferir());
+
+
+
+//Funcion que 
+const transferirDinero = (saldo, dinero) => saldo - dinero;
+saldoCajaAhorro = transferirDinero(saldoCajaAhorro, datoANumero());
 //Codigo que captura el boton que confirma la operacion
 const capturarValor = document.getElementById("transferencia-submit");
 //Operador que desestructura el array de objetos
 const [a, b, c, d, f] = cuentasHabilitadas;
-//Funcion que captura la cuenta seleccionada y devuelve una confirmacion y un campo para ingresar el importe que se desea transferir
+//Funcion que captura la cuenta seleccionada y devuelve un campo para ingresar el importe que se desea transferir
 const seleccionarCuenta = (inputValue) =>{
   if(inputValue == "01"){
     //Codigo para cambiar el subtitulo del simulador y agrega el data del titular de la cuenta como medida de control
     const text = document.querySelector(".text");
     text.innerHTML = `<p class='text'> Ingrese el monto que desea transferir a ${a.titular} : <input type= 'number' class= 'input' id= 'transferencia-input'> </p>`;
-    //Codigo que quita la tabla con las cuentas habilitadas simuladas
+    //Codigo que quita la tabla con las cuentas habilitadas
     tableContainer.innerHTML = "";
   }else if(inputValue == "02"){
     //Codigo para cambiar el subtitulo del simulador y agrega el data del titular de la cuenta como medida de control
     const text = document.querySelector(".text");
     text.innerHTML = `<p class='text'> Ingrese el monto que desea transferir a ${b.titular} : <input type= 'number' class= 'input' id= 'transferencia-input'> </p>`;
-    //Codigo que quita la tabla con las cuentas habilitadas simuladas
+    //Codigo que quita la tabla con las cuentas habilitadas 
     tableContainer.innerHTML = "";
   }else if(inputValue == "03"){
     //Codigo para cambiar el subtitulo del simulador y agrega el data del titular de la cuenta como medida de control
     const text = document.querySelector(".text");
     text.innerHTML = `<p class='text'> Ingrese el monto que desea transferir a ${c.titular} : <input type= 'number' class= 'input' id= 'transferencia-input'> </p>`;
-    //Codigo que quita la tabla con las cuentas habilitadas simuladas
+    //Codigo que quita la tabla con las cuentas habilitadas 
     tableContainer.innerHTML = "";
   }else if(inputValue == "04"){
     //Codigo para cambiar el subtitulo del simulador y agrega el data del titular de la cuenta como medida de control
     const text = document.querySelector(".text");
     text.innerHTML = `<p class='text'> Ingrese el monto que desea transferir a ${d.titular} : <input type= 'number' class= 'input' id= 'transferencia-input'> </p>`;
-    //Codigo que quita la tabla con las cuentas habilitadas simuladas
+    //Codigo que quita la tabla con las cuentas habilitadas 
     tableContainer.innerHTML = "";
   }else if(inputValue == "05"){
     //Codigo para cambiar el subtitulo del simulador y agrega el data del titular de la cuenta como medida de control
     const text = document.querySelector(".text");
     text.innerHTML = `<p class='text'> Ingrese el monto que desea transferir a ${f.titular} : <input type= 'number' class= 'input' id= 'transferencia-input'> </p>`;
-    //Codigo que quita la tabla con las cuentas habilitadas simuladas
+    //Codigo que quita la tabla con las cuentas habilitadas 
     tableContainer.innerHTML = "";
   }else{
     swal("Opcion invalida", "Vuelve a intetarlo!!", "error");
   }
 }
+// //Funcion que pide al usuario que confirme la operacion a realizar 
+// const confirmar = () => {
+//  Swal.fire({
+//     text: `Desea transferir ${numeroADinero} a la cuenta seleccionada?`,
+//     icon: 'question',
+//     showCancelButton: true,
+//     confirmButtonColor: '#3085d6',
+//     confirmButtonText: 'Confirmar',
+//     cancelButtonText: 'Cancelar',
+//     showClass: {
+//       popup: 'animate__animated animate__bounceIn'
+//     }
+//   }).then((result) => {
+//     if (result.isConfirmed) {
+//       Swal.fire(
+//         'Deleted!',
+//         'Your file has been deleted.',
+//         'success'
+//       )
+//     } else {
 
-capturarValor.onclick = () => {
-  seleccionarCuenta(inputTransferencia.value);
-  confirmar();
-}
-
-const confirmar = () => {
- Swal.fire({
-    title: 'Confirmar Operación',
-    text: "Desea transferir",
-    icon: 'question',
-    showCancelButton: true,
-    confirmButtonColor: '#3085d6',
-    confirmButtonText: 'Confirmar',
-    cancelButtonText: 'Cancelar',
-    showClass: {
-      popup: 'animate__animated animate__bounceIn'
-    }
-  }).then((result) => {
-    if (result.isConfirmed) {
-      Swal.fire(
-        'Deleted!',
-        'Your file has been deleted.',
-        'success'
-      )
-    } else {
-
-    }
-  })
-}
-
+//     }
+//   })
+// }
+//Codigo que establece un contador que permite armar el condicional
+let contadorClicks = 0;
+//Codigo que alterna las funciones sobre el mismo boton html
+capturarValor.addEventListener('click', function() {
+  if (contadorClicks == 0) {
+    seleccionarCuenta(inputTransferencia.value)
+    contadorClicks += 1;
+  } else if (contadorClicks == 1) {
+    confirmar();
+    contadorClicks -= 1;
+  }
+});
 
