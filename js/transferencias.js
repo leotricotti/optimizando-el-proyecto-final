@@ -95,7 +95,7 @@ mostrarCuentas(cuentasHabilitadas);
 //Codigo que captura el campo donde el usuario debe ingresar la cantidad de dinero que desea transferir
 let inputTransferencia = document.getElementById("transferencia-input");
 //Codigo que captura el boton que confirma la operacion
-const capturarValor = document.getElementById("transferencia-submit");
+let capturarValor = document.getElementById("transferencia-submit");
 //Operador que desestructura el array de objetos
 const [a, b, c, d, f] = cuentasHabilitadas;
 //Funcion que captura la cuenta seleccionada y devuelve un campo para ingresar el importe que se desea transferir
@@ -130,7 +130,8 @@ const seleccionarCuenta = (inputValue) =>{
     text.innerHTML = `<p class='text'> Ingrese el monto que desea transferir a ${f.titular} : <input type= 'number' class= 'input' id= 'transferencia-input'> </p>`;
     //Codigo que quita la tabla con las cuentas habilitadas 
     tableContainer.innerHTML = "";
-  }else{
+  }//Devuelve un alert si la opcion ingresada es invalida
+  else{
     Swal.fire({
       icon: 'warning',
       title: 'Ingrese una opción valida',
@@ -140,64 +141,64 @@ const seleccionarCuenta = (inputValue) =>{
         popup: 'animate__animated animate__fadeIn'
       },
     });
+    //Codigo que mantiene el contador de click en cero
     contadorClicks --;
-    inputTransferencia.value = "";  
+    //Codigo que limpia el input
+    inputTransferencia.value = ""; 
   }
 }
-
-const inputMontoTransferir = document.querySelector(".input");
-const transferir = () => inputMontoTransferir.value;
-console.log(transferir());
-
-const operarTransferencia = () => {
-  saldoCajaAhorro = saldoCajaAhorro - parseInt(inputMontoTransferir.value);
-  return saldoCajaAhorro;
+//Codigo que captura el boton modificar
+const opcionModificada = document.getElementById("limpiar-campo");
+// Funcion que limpia el campo input si el usuario así lo requiere
+opcionModificada.onclick = () => {
+  inputTransferencia.value = ""; 
 }
-numeroAPesos = (dinero) => {
-  return (dinero = new Intl.NumberFormat("es-AR", {
-    style: "currency",
-    currency: "ARS",
-  }).format(dinero));
+//Funcion que captura el monto a transferir ingresado por el usuario
+const capturarNumero = () => {
+  capturarValor.addEventListener('click', function() {
+    let datoParseado = parseInt(inputTransferencia.value);
+    saldoCajaAhorro = saldoCajaAhorro - datoParseado;
+    console.log(saldoCajaAhorro);
+  }); 
 }
-const numeroADinero = () => numeroAPesos(saldoCajaAhorro);
-
-//Funcion que modifica el HTML al momento de devolver la operacion solicitada por el usuario
-function agregarTexto() {
-  //Codigo que agrega texto al html
-  let textoAgregado = document.querySelector(".agregar-texto");
-  textoAgregado.innerText = "Desea realizar otra operacion?";
+//Funcion que modifica el titulo del html y proveé información sobre la operación al usuario
+const modificarHtml = () => {
+  const text = document.querySelector(".text");
+  text.innerHTML = `<p class='text'> Esta a punto de transferiar a ${d.titular} : la suma de ${saldoCajaAhorro} </p>`;
 }
-
-//Funcion que pide al usuario que confirme la operacion a realizar 
+//Codigo que dispara un alerta que confirma la operación
 const confirmar = () => {
   Swal.fire({
     icon: 'success',
-    title: 'Operación realizada con éxito. Su saldo es ' + numeroADinero(),
+    title: 'Operación realizada con éxito. Su saldo es ',
     confirmButtonColor: '#3085d6',
     confirmButtonText: 'Aceptar',
     showClass: {
       popup: 'animate__animated animate__fadeIn'
     }
   }).then (function() {
-    window.location= URL = "pages/opcion/opcion.html";
+    window.location= "pages/opcion/opcion.html";
 });
 }
 //Codigo que establece un contador que permite armar el condicional
-let contadorClicks = 0;
-//Codigo que alterna las funciones sobre el mismo boton html
+let contadorClicks = 0  ;
+//Funcion que alterna las llamadas a las funciones sobre el mismo boton html
 capturarValor.addEventListener('click', function() {
   if (contadorClicks == 0) {
-    seleccionarCuenta(inputTransferencia.value)
+    //Llamada a la funcion que selecciona la cuenta a la cual se desea transferir dinero
+    seleccionarCuenta(inputTransferencia.value);
+    //Codigo que agrega una unidad al contador
     contadorClicks ++;
   }else if(contadorClicks == 1){
-    operarTransferencia();
+    //Llamada a la función que captura el importe a transferir
+    capturarNumero();
+    //Llamada a la funcion que modifica el titulo del html
+    modificarHtml();
+    //Codigo que agrega una unidad al contador
     contadorClicks ++;
   }else if (contadorClicks == 2) {
+    //Llamada al alert que confirma la operacion
     confirmar();
-    
   }
-  console.table(contadorClicks);
 });
-
-console.log(saldoCajaAhorro);
 
