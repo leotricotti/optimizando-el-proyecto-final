@@ -29,7 +29,8 @@ const cargarServiciosPorVencer = (arr) => {
     id: "04",
     servicio: "Metrogas",
     vencimiento: "29/08/2022",
-    importe: 2256.48
+    importe: "$ 2.256,48",
+    numero: 2256.48
   });
   arr.push({
     id: "05",
@@ -99,35 +100,35 @@ const seleccionarServicio = (inputValue) =>{
   if(inputValue == "01"){
     //Codigo para cambiar el subtitulo del simulador y agrega el data del titular de la cuenta como medida de control
     const text = document.querySelector(".text");
-    text.innerHTML = `<p class='text'> Desea pagar el servicio ${a.servicio} por el importe de ${numeroAPesosa.importe}? </p>`;
+    text.innerHTML = `<p class='text'> Desea pagar el servicio ${a.servicio} por el importe de ${numeroAPesos(a.numero)}? </p>`;
     //Codigo que quita la tabla con las cuentas habilitadas
     tableContainer.innerHTML = "";
     actualizarSaldoCajaAhorro = () => saldoCajaAhorro - a.numero; 
   }else if(inputValue == "02"){
     //Codigo para cambiar el subtitulo del simulador y agrega el data del titular de la cuenta como medida de control
     const text = document.querySelector(".text");
-    text.innerHTML = `<p class='text'> Desea pagar el servicio ${b.servicio} por el importe de $ ${b.importe}? </p>`;
+    text.innerHTML = `<p class='text'> Desea pagar el servicio ${b.servicio} por el importe de ${numeroAPesos(b.numero)}? </p>`;
     //Codigo que quita la tabla con las cuentas habilitadas
     tableContainer.innerHTML = "";
     actualizarSaldoCajaAhorro = () => saldoCajaAhorro - b.numero; 
   }else if(inputValue == "03"){
     //Codigo para cambiar el subtitulo del simulador y agrega el data del titular de la cuenta como medida de control
     const text = document.querySelector(".text");
-    text.innerHTML = `<p class='text'> Desea pagar el servicio ${c.servicio} por el importe de ${c.importe}? </p>`;
+    text.innerHTML = `<p class='text'> Desea pagar el servicio ${c.servicio} por el importe de ${numeroAPesos(c.numero)}? </p>`;
     //Codigo que quita la tabla con las cuentas habilitadas
     tableContainer.innerHTML = "";
     actualizarSaldoCajaAhorro = () => saldoCajaAhorro - c.numero; 
   }else if(inputValue == "04"){
     //Codigo para cambiar el subtitulo del simulador y agrega el data del titular de la cuenta como medida de control
     const text = document.querySelector(".text");
-    text.innerHTML = `<p class='text'> Desea pagar el servicio ${d.servicio} por el importe de ${d.importe}? </p>`;
+    text.innerHTML = `<p class='text'> Desea pagar el servicio ${d.servicio} por el importe de ${numeroAPesos(d.numero)}? </p>`;
     //Codigo que quita la tabla con las cuentas habilitadas
     tableContainer.innerHTML = "";
     actualizarSaldoCajaAhorro = () => saldoCajaAhorro - a.numero; 
   }else if(inputValue == "05"){
     //Codigo para cambiar el subtitulo del simulador y agrega el data del titular de la cuenta como medida de control
     const text = document.querySelector(".text");
-    text.innerHTML = `<p class='text'> Desea pagar el servicio ${e.servicio} por el importe de ${e.importe}? </p>`;
+    text.innerHTML = `<p class='text'> Desea pagar el servicio ${e.servicio} por el importe de ${numeroAPesos(e.numero)}? </p>`;
     //Codigo que quita la tabla con las cuentas habilitadas
     tableContainer.innerHTML = "";
     actualizarSaldoCajaAhorro = () => saldoCajaAhorro - a.numero; 
@@ -161,7 +162,7 @@ capturarValor.addEventListener('click', function() {
   }else if (contadorClicks == 1) {
     Swal.fire({
       icon: 'success',
-      title: `Operación realizada con éxito. Su saldo es ${actualizarSaldoCajaAhorro()}`,
+      title: `Operación realizada con éxito. Su saldo es ${numeroAPesos(actualizarSaldoCajaAhorro())}`,
       confirmButtonColor: '#3085d6',
       confirmButtonText: 'Aceptar',
       showClass: {
