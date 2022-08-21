@@ -30,7 +30,7 @@ const cargarCuentasHabilitadas = (arr) => {
   });
   arr.push({
     id: "04",
-    titular: "Alonso, Juan Alberto",
+    titular: "Alonso, Juan",
     tipo: "Caja de Ahorro",
     moneda: "$",
     cuenta: "2356-123055/5",
@@ -153,6 +153,13 @@ const opcionModificada = document.getElementById("limpiar-campo");
 opcionModificada.onclick = () => {
   inputTransferencia.value = ""; 
 }
+//Funcion que coinvierte un numero al formato de pesos argentinos
+numeroAPesos = (dinero) => {
+  return (dinero = new Intl.NumberFormat("es-AR", {
+    style: "currency",
+    currency: "ARS",
+  }).format(dinero));
+}
 //Funcion que captura el monto a transferir ingresado por el usuario
 function capturarNumero() {
   capturarValor.addEventListener('click', function () {
@@ -164,13 +171,13 @@ function capturarNumero() {
 //Funcion que modifica el titulo del html y proveé información sobre la operación al usuario
 const modificarHtml = () => {
   const text = document.querySelector(".text");
-  text.innerHTML = `<p class='text'> Esta a punto de transferiar a ${d.titular} la suma de ${saldoCajaAhorro} </p>`;
+  text.innerHTML = `<p class='text'> Esta a punto de transferiar a ${d.titular} la suma de ${numeroAPesos(saldoCajaAhorro)} </p>`;
 }
 //Codigo que dispara un alerta que confirma la operación
 const confirmar = () => {
   Swal.fire({
     icon: 'success',
-    title: 'Operación realizada con éxito. Su saldo es ',
+    title: `Operación realizada con éxito. Su saldo es ${numeroAPesos(saldoCajaAhorro)}`,
     confirmButtonColor: '#3085d6',
     confirmButtonText: 'Aceptar',
     showClass: {
