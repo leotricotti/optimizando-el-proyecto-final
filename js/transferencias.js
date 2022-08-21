@@ -160,19 +160,6 @@ numeroAPesos = (dinero) => {
     currency: "ARS",
   }).format(dinero));
 }
-//Funcion que captura el monto a transferir ingresado por el usuario
-function capturarNumero() {
-  capturarValor.addEventListener('click', function () {
-    let datoParseado = parseInt(inputTransferencia.value);
-    saldoCajaAhorro = saldoCajaAhorro - datoParseado;
-    console.log(saldoCajaAhorro);
-  });
-}
-//Funcion que modifica el titulo del html y proveé información sobre la operación al usuario
-const modificarHtml = () => {
-  const text = document.querySelector(".text");
-  text.innerHTML = `<p class='text'> Esta a punto de transferiar a ${d.titular} la suma de ${numeroAPesos(saldoCajaAhorro)} </p>`;
-}
 //Codigo que dispara un alerta que confirma la operación
 const confirmar = () => {
   Swal.fire({
@@ -184,7 +171,7 @@ const confirmar = () => {
       popup: 'animate__animated animate__fadeIn'
     }
   }).then(function(){
-    window.location.href = "opcion.html";
+    window.location.href = "opcion-transferencias.html";
 });
 }
 //Codigo que establece un contador que permite armar el condicional
@@ -195,15 +182,9 @@ capturarValor.addEventListener('click', function() {
     //Llamada a la funcion que selecciona la cuenta a la cual se desea transferir dinero
     seleccionarCuenta(inputTransferencia.value);
     //Codigo que agrega una unidad al contador
-    contadorClicks ++;
-  }else if(contadorClicks == 1){
-    //Llamada a la función que captura el importe a transferir
-    capturarNumero();
-    //Llamada a la funcion que modifica el titulo del html
-    modificarHtml();
-    //Codigo que agrega una unidad al contador
-    contadorClicks ++;
-  }else if (contadorClicks == 2) {
+    contadorClicks = 1;
+    console.log(contadorClicks);
+  }else if (contadorClicks == 1) {
     //Llamada al alert que confirma la operacion
     confirmar();
   }
