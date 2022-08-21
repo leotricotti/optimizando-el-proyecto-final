@@ -139,7 +139,7 @@ const seleccionarCuenta = (inputValue) =>{
       confirmButtonText: 'Aceptar',
       showClass: {
         popup: 'animate__animated animate__fadeIn'
-      },
+      }
     });
     //Codigo que mantiene el contador de click en cero
     contadorClicks --;
@@ -164,7 +164,7 @@ function capturarNumero() {
 //Funcion que modifica el titulo del html y proveé información sobre la operación al usuario
 const modificarHtml = () => {
   const text = document.querySelector(".text");
-  text.innerHTML = `<p class='text'> Esta a punto de transferiar a ${d.titular} : la suma de ${saldoCajaAhorro} </p>`;
+  text.innerHTML = `<p class='text'> Esta a punto de transferiar a ${d.titular} la suma de ${saldoCajaAhorro} </p>`;
 }
 //Codigo que dispara un alerta que confirma la operación
 const confirmar = () => {
@@ -176,8 +176,8 @@ const confirmar = () => {
     showClass: {
       popup: 'animate__animated animate__fadeIn'
     }
-  }).then (function() {
-    window.location= "pages/opcion/opcion.html";
+  }).then(function(){
+    window.location.href = "opcion.html";
 });
 }
 //Codigo que establece un contador que permite armar el condicional
