@@ -94,16 +94,6 @@ function mostrarCuentas(array) {
 mostrarCuentas(cuentasHabilitadas);
 //Codigo que captura el campo donde el usuario debe ingresar la cantidad de dinero que desea transferir
 let inputTransferencia = document.getElementById("transferencia-input");
-//Funcion que coinvierte un numero al formato de pesos argentinos
-const transferir = () => inputTransferencia.value;
-
-console.log(transferir());
-
-
-
-//Funcion que 
-const transferirDinero = (saldo, dinero) => saldo - dinero;
-saldoCajaAhorro = transferirDinero(saldoCajaAhorro, datoANumero());
 //Codigo que captura el boton que confirma la operacion
 const capturarValor = document.getElementById("transferencia-submit");
 //Operador que desestructura el array de objetos
@@ -141,43 +131,73 @@ const seleccionarCuenta = (inputValue) =>{
     //Codigo que quita la tabla con las cuentas habilitadas 
     tableContainer.innerHTML = "";
   }else{
-    swal("Opcion invalida", "Vuelve a intetarlo!!", "error");
+    Swal.fire({
+      icon: 'warning',
+      title: 'Ingrese una opción valida',
+      confirmButtonColor: '#3085d6',
+      confirmButtonText: 'Aceptar',
+      showClass: {
+        popup: 'animate__animated animate__fadeIn'
+      },
+    });
+    contadorClicks --;
+    inputTransferencia.value = "";  
   }
 }
-// //Funcion que pide al usuario que confirme la operacion a realizar 
-// const confirmar = () => {
-//  Swal.fire({
-//     text: `Desea transferir ${numeroADinero} a la cuenta seleccionada?`,
-//     icon: 'question',
-//     showCancelButton: true,
-//     confirmButtonColor: '#3085d6',
-//     confirmButtonText: 'Confirmar',
-//     cancelButtonText: 'Cancelar',
-//     showClass: {
-//       popup: 'animate__animated animate__bounceIn'
-//     }
-//   }).then((result) => {
-//     if (result.isConfirmed) {
-//       Swal.fire(
-//         'Deleted!',
-//         'Your file has been deleted.',
-//         'success'
-//       )
-//     } else {
 
-//     }
-//   })
-// }
+const inputMontoTransferir = document.querySelector(".input");
+const transferir = () => inputMontoTransferir.value;
+console.log(transferir());
+
+const operarTransferencia = () => {
+  saldoCajaAhorro = saldoCajaAhorro - parseInt(inputMontoTransferir.value);
+  return saldoCajaAhorro;
+}
+numeroAPesos = (dinero) => {
+  return (dinero = new Intl.NumberFormat("es-AR", {
+    style: "currency",
+    currency: "ARS",
+  }).format(dinero));
+}
+const numeroADinero = () => numeroAPesos(saldoCajaAhorro);
+
+//Funcion que modifica el HTML al momento de devolver la operacion solicitada por el usuario
+function agregarTexto() {
+  //Codigo que agrega texto al html
+  let textoAgregado = document.querySelector(".agregar-texto");
+  textoAgregado.innerText = "Desea realizar otra operacion?";
+}
+
+//Funcion que pide al usuario que confirme la operacion a realizar 
+const confirmar = () => {
+  Swal.fire({
+    icon: 'success',
+    title: 'Operación realizada con éxito. Su saldo es ' + numeroADinero(),
+    confirmButtonColor: '#3085d6',
+    confirmButtonText: 'Aceptar',
+    showClass: {
+      popup: 'animate__animated animate__fadeIn'
+    }
+  }).then (function() {
+    window.location= URL = "pages/opcion/opcion.html";
+});
+}
 //Codigo que establece un contador que permite armar el condicional
 let contadorClicks = 0;
 //Codigo que alterna las funciones sobre el mismo boton html
 capturarValor.addEventListener('click', function() {
   if (contadorClicks == 0) {
     seleccionarCuenta(inputTransferencia.value)
-    contadorClicks += 1;
-  } else if (contadorClicks == 1) {
+    contadorClicks ++;
+  }else if(contadorClicks == 1){
+    operarTransferencia();
+    contadorClicks ++;
+  }else if (contadorClicks == 2) {
     confirmar();
-    contadorClicks -= 1;
+    
   }
+  console.table(contadorClicks);
 });
+
+console.log(saldoCajaAhorro);
 
