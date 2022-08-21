@@ -48,7 +48,7 @@ const cargarCuentasHabilitadas = (arr) => {
 //Llamada a la funcion que carga las cuentas en el array de cuentas habilitadas
 cargarCuentasHabilitadas(cuentasHabilitadas);
 //Funcion que inyecta la tabla cuentas habilitadas a recibir transferencias en el html
-function mostrarCuentas(array) {
+function mostrarCuentas(...array) {
   //Código que crea el elemento tabla y le asigna sus clases
   let table = document.createElement("table");
   table.className = "table table-hover";
@@ -91,7 +91,7 @@ function mostrarCuentas(array) {
   tableContainer.append(table);
 }
 //Llamada a la funcion que inyecta al html la tabla con las cuentas habilitadas
-mostrarCuentas(cuentasHabilitadas);
+mostrarCuentas(...cuentasHabilitadas);
 //Codigo que captura el campo donde el usuario debe ingresar la cantidad de dinero que desea transferir
 let inputTransferencia = document.getElementById("transferencia-input");
 //Codigo que captura el boton que confirma la operacion
