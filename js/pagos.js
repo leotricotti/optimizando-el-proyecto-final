@@ -8,31 +8,35 @@ const cargarServiciosPorVencer = (arr) => {
     id: "01",
     servicio: "Edesur",
     vencimiento: "31/08/2022",
-    importe: "$ 5.8056,23"
+    importe: "$ 5.8056,23",
+    numero: 5805.23
   });
   arr.push({
     id: "02",
     servicio: "AySA",
     vencimiento: "05/09/2022",
-    importe: "$ 1.553,80"
+    importe: "$ 1.553,80",
+    numero: 1553.80
   });
   arr.push({
     id: "03",
     servicio: "Movistar Hogar",
     vencimiento: "08/09/2022",
-    importe: "$ 4.536,58"
+    importe: "$ 4.536,58",
+    numero: 4536.58
   });
   arr.push({
     id: "04",
     servicio: "Metrogas",
     vencimiento: "29/08/2022",
-    importe: "$ 4.565,32"
+    importe: 2256.48
   });
   arr.push({
     id: "05",
     servicio: "Personal",
     vencimiento: "27/08/2022",
-    importe: "$ 3.526,32"
+    importe: "$ 3.526,32",
+    numero: 3526.32
   });
 }
 //Llamada a la funcion que carga las cuentas en el array de cuentas habilitadas
@@ -76,6 +80,13 @@ function mostrarServicios(...array) {
   tableContainer = document.querySelector(".table-container");
   tableContainer.append(table);
 }
+//Funcion que coinvierte un numero al formato de pesos argentinos
+numeroAPesos = (dinero) => {
+  return (dinero = new Intl.NumberFormat("es-AR", {
+    style: "currency",
+    currency: "ARS",
+  }).format(dinero));
+}
 //Llamada a la funcion que inyecta al html la tabla con las cuentas habilitadas
 mostrarServicios(...serviciosPorVencer);
 let pagosInput = document.getElementById("pagos-input");
@@ -88,33 +99,38 @@ const seleccionarServicio = (inputValue) =>{
   if(inputValue == "01"){
     //Codigo para cambiar el subtitulo del simulador y agrega el data del titular de la cuenta como medida de control
     const text = document.querySelector(".text");
-    text.innerHTML = `<p class='text'> Desea pagar el servicio ${a.servicio} por el importe de ${a.importe}? </p>`;
+    text.innerHTML = `<p class='text'> Desea pagar el servicio ${a.servicio} por el importe de ${numeroAPesosa.importe}? </p>`;
     //Codigo que quita la tabla con las cuentas habilitadas
     tableContainer.innerHTML = "";
+    actualizarSaldoCajaAhorro = () => saldoCajaAhorro - a.numero; 
   }else if(inputValue == "02"){
     //Codigo para cambiar el subtitulo del simulador y agrega el data del titular de la cuenta como medida de control
     const text = document.querySelector(".text");
-    text.innerHTML = `<p class='text'> Desea pagar el servicio ${b.servicio} por el importe de ${b.importe}? </p>`;
+    text.innerHTML = `<p class='text'> Desea pagar el servicio ${b.servicio} por el importe de $ ${b.importe}? </p>`;
     //Codigo que quita la tabla con las cuentas habilitadas
     tableContainer.innerHTML = "";
+    actualizarSaldoCajaAhorro = () => saldoCajaAhorro - b.numero; 
   }else if(inputValue == "03"){
     //Codigo para cambiar el subtitulo del simulador y agrega el data del titular de la cuenta como medida de control
     const text = document.querySelector(".text");
     text.innerHTML = `<p class='text'> Desea pagar el servicio ${c.servicio} por el importe de ${c.importe}? </p>`;
     //Codigo que quita la tabla con las cuentas habilitadas
     tableContainer.innerHTML = "";
+    actualizarSaldoCajaAhorro = () => saldoCajaAhorro - c.numero; 
   }else if(inputValue == "04"){
     //Codigo para cambiar el subtitulo del simulador y agrega el data del titular de la cuenta como medida de control
     const text = document.querySelector(".text");
     text.innerHTML = `<p class='text'> Desea pagar el servicio ${d.servicio} por el importe de ${d.importe}? </p>`;
     //Codigo que quita la tabla con las cuentas habilitadas
     tableContainer.innerHTML = "";
+    actualizarSaldoCajaAhorro = () => saldoCajaAhorro - a.numero; 
   }else if(inputValue == "05"){
     //Codigo para cambiar el subtitulo del simulador y agrega el data del titular de la cuenta como medida de control
     const text = document.querySelector(".text");
     text.innerHTML = `<p class='text'> Desea pagar el servicio ${e.servicio} por el importe de ${e.importe}? </p>`;
     //Codigo que quita la tabla con las cuentas habilitadas
     tableContainer.innerHTML = "";
+    actualizarSaldoCajaAhorro = () => saldoCajaAhorro - a.numero; 
   }//Devuelve un alert si la opcion ingresada es invalida
   else{
     Swal.fire({
@@ -132,7 +148,6 @@ const seleccionarServicio = (inputValue) =>{
   //Codigo que limpia el input
   pagosInput.value = ""; 
 }
-
 //Codigo que establece un contador que permite armar el condicional
 let contadorClicks = 0;
 //Funcion que alterna las llamadas a las funciones sobre el mismo boton html
@@ -141,16 +156,19 @@ capturarValor.addEventListener('click', function() {
     //Llamada a la funcion que selecciona la cuenta a la cual se desea transferir dinero
     seleccionarServicio(pagosInput.value);
     //Codigo que agrega una unidad al contador
-    contadorClicks ++;
-  }else if(contadorClicks == 1){
-    //Llamada a la función que captura el importe a transferir
-    // capturarNumero();
-    //Llamada a la funcion que modifica el titulo del html
-    // modificarHtml();
-    //Codigo que agrega una unidad al contador
-    contadorClicks ++;
-  }else if (contadorClicks == 2) {
-    //Llamada al alert que confirma la operacion
-    // confirmar();
+    contadorClicks = 1;
+    console.log(contadorClicks);
+  }else if (contadorClicks == 1) {
+    Swal.fire({
+      icon: 'success',
+      title: `Operación realizada con éxito. Su saldo es ${actualizarSaldoCajaAhorro()}`,
+      confirmButtonColor: '#3085d6',
+      confirmButtonText: 'Aceptar',
+      showClass: {
+        popup: 'animate__animated animate__fadeIn'
+      }
+    }).then(function(){
+      window.location.href = "opcion-pagos.html";
+    });
   }
 });
