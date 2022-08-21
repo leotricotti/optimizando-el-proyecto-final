@@ -154,12 +154,12 @@ opcionModificada.onclick = () => {
   inputTransferencia.value = ""; 
 }
 //Funcion que captura el monto a transferir ingresado por el usuario
-const capturarNumero = () => {
-  capturarValor.addEventListener('click', function() {
+function capturarNumero() {
+  capturarValor.addEventListener('click', function () {
     let datoParseado = parseInt(inputTransferencia.value);
     saldoCajaAhorro = saldoCajaAhorro - datoParseado;
     console.log(saldoCajaAhorro);
-  }); 
+  });
 }
 //Funcion que modifica el titulo del html y proveé información sobre la operación al usuario
 const modificarHtml = () => {
