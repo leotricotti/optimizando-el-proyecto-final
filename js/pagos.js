@@ -103,6 +103,7 @@ const seleccionarServicio = (inputValue) =>{
     text.innerHTML = `<p class='text'> Desea pagar el servicio ${a.servicio} por el importe de ${numeroAPesos(a.numero)}? </p>`;
     //Codigo que quita la tabla con las cuentas habilitadas
     tableContainer.innerHTML = "";
+    //Funcion que actualiza el saldo de la caja de ahorro
     actualizarSaldoCajaAhorro = () => saldoCajaAhorro - a.numero; 
   }else if(inputValue == "02"){
     //Codigo para cambiar el subtitulo del simulador y agrega el data del titular de la cuenta como medida de control
@@ -110,6 +111,7 @@ const seleccionarServicio = (inputValue) =>{
     text.innerHTML = `<p class='text'> Desea pagar el servicio ${b.servicio} por el importe de ${numeroAPesos(b.numero)}? </p>`;
     //Codigo que quita la tabla con las cuentas habilitadas
     tableContainer.innerHTML = "";
+    //Funcion que actualiza el saldo de la caja de ahorro
     actualizarSaldoCajaAhorro = () => saldoCajaAhorro - b.numero; 
   }else if(inputValue == "03"){
     //Codigo para cambiar el subtitulo del simulador y agrega el data del titular de la cuenta como medida de control
@@ -117,6 +119,7 @@ const seleccionarServicio = (inputValue) =>{
     text.innerHTML = `<p class='text'> Desea pagar el servicio ${c.servicio} por el importe de ${numeroAPesos(c.numero)}? </p>`;
     //Codigo que quita la tabla con las cuentas habilitadas
     tableContainer.innerHTML = "";
+    //Funcion que actualiza el saldo de la caja de ahorro
     actualizarSaldoCajaAhorro = () => saldoCajaAhorro - c.numero; 
   }else if(inputValue == "04"){
     //Codigo para cambiar el subtitulo del simulador y agrega el data del titular de la cuenta como medida de control
@@ -124,6 +127,7 @@ const seleccionarServicio = (inputValue) =>{
     text.innerHTML = `<p class='text'> Desea pagar el servicio ${d.servicio} por el importe de ${numeroAPesos(d.numero)}? </p>`;
     //Codigo que quita la tabla con las cuentas habilitadas
     tableContainer.innerHTML = "";
+    //Funcion que actualiza el saldo de la caja de ahorro
     actualizarSaldoCajaAhorro = () => saldoCajaAhorro - a.numero; 
   }else if(inputValue == "05"){
     //Codigo para cambiar el subtitulo del simulador y agrega el data del titular de la cuenta como medida de control
@@ -131,6 +135,7 @@ const seleccionarServicio = (inputValue) =>{
     text.innerHTML = `<p class='text'> Desea pagar el servicio ${e.servicio} por el importe de ${numeroAPesos(e.numero)}? </p>`;
     //Codigo que quita la tabla con las cuentas habilitadas
     tableContainer.innerHTML = "";
+    //Funcion que actualiza el saldo de la caja de ahorro
     actualizarSaldoCajaAhorro = () => saldoCajaAhorro - a.numero; 
   }//Devuelve un alert si la opcion ingresada es invalida
   else{
