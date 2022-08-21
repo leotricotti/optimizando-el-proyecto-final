@@ -35,3 +35,122 @@ const cargarServiciosPorVencer = (arr) => {
     importe: "$ 3.526,32"
   });
 }
+//Llamada a la funcion que carga las cuentas en el array de cuentas habilitadas
+cargarServiciosPorVencer(serviciosPorVencer);
+//Funcion que inyecta la tabla cuentas habilitadas a recibir transferencias en el html
+function mostrarServicios(...array) {
+  //Código que crea el elemento tabla y le asigna sus clases
+  let table = document.createElement("table");
+  table.className = "table table-hover";
+  //Código que crea la cabeza de la tabla
+  let tableHead = document.createElement("thead");
+  tableHead.innerHTML = `
+        <thead>
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Servicio</th>
+            <th scope="col">Vencimiento</th>
+            <th scope="col">Importe</th>
+        </tr>
+        </thead>
+    `;
+  //Codigo que crea el cuerpo de la tabla y agrega el divisor entre cabeza y cuerpo
+  let tableBody = document.createElement("tbody");
+  tableBody.className = "table-group-divider";
+  //Codigo que recorre el array de cuentas creado anteriormente y asigna cada elemento a su culumna
+  for (const cuenta of array) {
+    console.log()
+    tableBody.innerHTML += `
+        <tr>
+            <td>${cuenta.id}</td>
+            <td>${cuenta.servicio}</td>
+            <td>${cuenta.vencimiento}</td>
+            <td>${cuenta.importe}</td>
+        </tr>
+        `;
+  }
+  //Codigo que agrega la cabeza y el cuerpo a la tabla creada anteriormente
+  table.append(tableHead);
+  table.append(tableBody);
+  //Codigo que asigna a un padre la tabla creada anteriormente
+  tableContainer = document.querySelector(".table-container");
+  tableContainer.append(table);
+}
+//Llamada a la funcion que inyecta al html la tabla con las cuentas habilitadas
+mostrarServicios(...serviciosPorVencer);
+let pagosInput = document.getElementById("pagos-input");
+//Codigo que captura el boton que confirma la operacion
+let capturarValor = document.getElementById("pagos-submit");
+//Operador que desestructura el array de objetos
+const [a, b, c, d, e] = serviciosPorVencer;
+//Funcion que captura la cuenta seleccionada y devuelve un campo para ingresar el importe que se desea transferir
+const seleccionarServicio = (inputValue) =>{
+  if(inputValue == "01"){
+    //Codigo para cambiar el subtitulo del simulador y agrega el data del titular de la cuenta como medida de control
+    const text = document.querySelector(".text");
+    text.innerHTML = `<p class='text'> Desea pagar el servicio ${a.servicio} por el importe de ${a.importe}? </p>`;
+    //Codigo que quita la tabla con las cuentas habilitadas
+    tableContainer.innerHTML = "";
+  }else if(inputValue == "02"){
+    //Codigo para cambiar el subtitulo del simulador y agrega el data del titular de la cuenta como medida de control
+    const text = document.querySelector(".text");
+    text.innerHTML = `<p class='text'> Desea pagar el servicio ${b.servicio} por el importe de ${b.importe}? </p>`;
+    //Codigo que quita la tabla con las cuentas habilitadas
+    tableContainer.innerHTML = "";
+  }else if(inputValue == "03"){
+    //Codigo para cambiar el subtitulo del simulador y agrega el data del titular de la cuenta como medida de control
+    const text = document.querySelector(".text");
+    text.innerHTML = `<p class='text'> Desea pagar el servicio ${c.servicio} por el importe de ${c.importe}? </p>`;
+    //Codigo que quita la tabla con las cuentas habilitadas
+    tableContainer.innerHTML = "";
+  }else if(inputValue == "04"){
+    //Codigo para cambiar el subtitulo del simulador y agrega el data del titular de la cuenta como medida de control
+    const text = document.querySelector(".text");
+    text.innerHTML = `<p class='text'> Desea pagar el servicio ${d.servicio} por el importe de ${d.importe}? </p>`;
+    //Codigo que quita la tabla con las cuentas habilitadas
+    tableContainer.innerHTML = "";
+  }else if(inputValue == "05"){
+    //Codigo para cambiar el subtitulo del simulador y agrega el data del titular de la cuenta como medida de control
+    const text = document.querySelector(".text");
+    text.innerHTML = `<p class='text'> Desea pagar el servicio ${e.servicio} por el importe de ${e.importe}? </p>`;
+    //Codigo que quita la tabla con las cuentas habilitadas
+    tableContainer.innerHTML = "";
+  }//Devuelve un alert si la opcion ingresada es invalida
+  else{
+    Swal.fire({
+      icon: 'warning',
+      title: 'Ingrese una opción valida',
+      confirmButtonColor: '#3085d6',
+      confirmButtonText: 'Aceptar',
+      showClass: {
+        popup: 'animate__animated animate__fadeIn'
+      }
+    });
+  }
+  //Codigo que mantiene el contador de click en cero
+  contadorClicks --;
+  //Codigo que limpia el input
+  pagosInput.value = ""; 
+}
+
+//Codigo que establece un contador que permite armar el condicional
+let contadorClicks = 0;
+//Funcion que alterna las llamadas a las funciones sobre el mismo boton html
+capturarValor.addEventListener('click', function() {
+  if (contadorClicks == 0) {
+    //Llamada a la funcion que selecciona la cuenta a la cual se desea transferir dinero
+    seleccionarServicio(pagosInput.value);
+    //Codigo que agrega una unidad al contador
+    contadorClicks ++;
+  }else if(contadorClicks == 1){
+    //Llamada a la función que captura el importe a transferir
+    // capturarNumero();
+    //Llamada a la funcion que modifica el titulo del html
+    // modificarHtml();
+    //Codigo que agrega una unidad al contador
+    contadorClicks ++;
+  }else if (contadorClicks == 2) {
+    //Llamada al alert que confirma la operacion
+    // confirmar();
+  }
+});
